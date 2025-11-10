@@ -10,7 +10,7 @@ export interface ICicloEscolar extends mongoose.Document {
 
  const CicloEscolarSchema = new Schema(
     {        
-        ciclo_escolar: {
+        cicloEscolar: {
             type: String,
             unique: true,
             required: [true, 'cicloEscolar required']
