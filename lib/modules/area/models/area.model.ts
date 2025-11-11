@@ -5,13 +5,13 @@ import * as mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 export interface IArea extends mongoose.Document {     
-    area: string;   
+    area: number;   
  }
 
  const AreaSchema = new Schema(
     {        
         area: {
-            type: String,
+            type: Number,
             unique: true,
             required: [true, 'area required']
         }

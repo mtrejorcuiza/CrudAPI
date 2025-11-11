@@ -1,22 +1,22 @@
 import { Request, Response } from 'express';
 import * as _ from 'lodash';
-import Area from '../models/area.model';
-import { DEFAULT_PASSWORD } from '../../../config';
+import Materia from '../models/materia.model';
 
-export class AreaController {
-    crearArea = (req: Request, res: Response) => {        
-        const nuevaArea = new Area(
+export class MateriaController {
+    crearMateria = (req: Request, res: Response) => {        
+        const nuevaMateria = new Materia(
             {               
-                area: req.body.Area               
+                materia: req.body.materia, 
+                creditos: req.body.creditos             
             }
         );
-        nuevaArea.save()
-        .then(areaCreada => {
+        nuevaMateria.save()
+        .then(materiaCreada => {
             res.status(201).json(
                 {
                     ok: true,
-                    area: areaCreada,
-                    message: 'Área creada'
+                    Materia: materiaCreada,
+                    message: 'Materia creada'
                 }
             );
         })
@@ -29,13 +29,13 @@ export class AreaController {
         });
     }
 
-    obtenerAreas = (req: Request, res: Response) => { 
-        Area.find()
-        .then(areas => {
+    obtenerMaterias = (req: Request, res: Response) => { 
+        Materia.find()
+        .then(materias => {
             res.status(200).json(
                 {
                     ok: true,
-                    areas: areas
+                    materias: materias
                 }
             );
         })
@@ -48,14 +48,14 @@ export class AreaController {
         });
     }
 
-    actualizarArea = (req: Request, res: Response) => { 
-        const area = _.pick(req.body, 'area');        
-        Area.findByIdAndUpdate(req.params.id, area)
-        .then(async areaActualizada => {                                   
+    actualizarMateria = (req: Request, res: Response) => { 
+        const materia = _.pick(req.body, 'materia','creditos');    
+        Materia.findByIdAndUpdate(req.params.id, materia)
+        .then(async materiaActualizada => {                                   
             res.status(200).json({
                 ok: true,
-                area: areaActualizada,                    
-                message: 'Área Actualizada'
+                Materia: materiaActualizada,                    
+                message: 'Materia Actualizada'
             });
         })
         .catch(error => {
@@ -67,12 +67,12 @@ export class AreaController {
         });
     }
 
-    eliminarArea = (req: Request, res: Response) => {
-        Area.findByIdAndDelete(req.params.id)
-        .then(areaEliminada => {
+    eliminarMateria = (req: Request, res: Response) => {
+        Materia.findByIdAndDelete(req.params.id)
+        .then(materiaEliminada => {
             res.status(200).json({
                 ok: true,                                 
-                message: 'Área Eliminada'
+                message: 'Materia Eliminada'
             });
         })
         .catch(error => {
