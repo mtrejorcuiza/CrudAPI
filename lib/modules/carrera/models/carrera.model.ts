@@ -5,7 +5,8 @@ import * as mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 export interface ICarrera extends mongoose.Document {     
-    carrera: string;   
+    carrera: string;
+    duracion: number;
  }
 
  const CarreraSchema = new Schema(
@@ -14,6 +15,10 @@ export interface ICarrera extends mongoose.Document {
             type: String,
             unique: true,
             required: [true, 'carrera required']
+        },
+        duracion: {
+            type: Number,            
+            required: [true, 'duracion required']
         }
     }
     
