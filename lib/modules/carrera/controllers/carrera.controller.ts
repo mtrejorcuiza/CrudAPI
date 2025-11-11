@@ -50,7 +50,7 @@ export class CarreraController {
     }
 
     actualizarCarrera = (req: Request, res: Response) => { 
-        const carrera = _.pick(req.body, 'carrera');        
+        const carrera = _.pick(req.body, 'carrera','duracion');        
         Carrera.findByIdAndUpdate(req.params.id, carrera)
         .then(async carreraActualizada => {                                   
             res.status(200).json({
