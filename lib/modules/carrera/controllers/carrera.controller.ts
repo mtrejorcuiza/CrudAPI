@@ -7,7 +7,8 @@ export class CarreraController {
     crearCarrera = (req: Request, res: Response) => {        
         const nuevaCarrera = new Carrera(
             {               
-                carrera: req.body.carrera               
+                carrera: req.body.carrera, 
+                duracion: req.body.duracion    
             }
         );
         nuevaCarrera.save()
